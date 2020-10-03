@@ -1,6 +1,9 @@
 package s.l.q.m.kkk.filter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import s.l.q.m.kkk.aspect.BrokerAspect;
 import s.l.q.m.kkk.bean.One;
 
 import javax.servlet.*;
@@ -18,24 +21,26 @@ import java.io.IOException;
 @WebFilter(urlPatterns = {"/*"})
 public class LoginFilter implements Filter {
 
+    private static final Logger logger = LoggerFactory.getLogger(BrokerAspect.class);
+
     @Autowired
     private One one;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         one.print();
-        System.out.println("go into init filter");
+        logger.info("go into init filter");
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("go into do filter");
+        logger.info("go into do filter");
         one.print();
         chain.doFilter(request, response);
     }
 
     @Override
     public void destroy() {
-        System.out.println("go into destroy filter");
+        logger.info("go into destroy filter");
     }
 }

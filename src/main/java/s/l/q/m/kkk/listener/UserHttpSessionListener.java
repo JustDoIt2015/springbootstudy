@@ -1,5 +1,8 @@
 package s.l.q.m.kkk.listener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
@@ -7,13 +10,15 @@ import javax.servlet.http.HttpSessionListener;
 @WebListener
 public class UserHttpSessionListener implements HttpSessionListener {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserHttpSessionListener.class);
+
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        System.out.println("session created");
+        logger.info("session created");
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        System.out.println("session destroy");
+        logger.info("session destroy");
     }
 }
