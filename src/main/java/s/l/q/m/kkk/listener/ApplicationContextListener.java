@@ -12,6 +12,10 @@ public class ApplicationContextListener implements ApplicationListener<ContextRe
     
     private static final Logger logger = LoggerFactory.getLogger(ApplicationContextListener.class);
 
+    public ApplicationContextListener() {
+        logger.info("i am init");
+    }
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         logger.info("go listener");

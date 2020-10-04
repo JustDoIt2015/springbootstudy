@@ -13,9 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * Hello world!
  *
  */
-@EnableAutoConfiguration
 @SpringBootApplication
-@EnableWebMvc
 @ServletComponentScan
 @EnableAspectJAutoProxy
 public class App 

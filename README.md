@@ -73,3 +73,31 @@ public class WebConfig implements WebMvcConfigurer {
     }
 }
 ```
+什么时候初试化？
+
+当初始化bean "requestMappingHandlerMapping"=>org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+的时候，会调用<code>mapping.setInterceptors(getInterceptors(conversionService, resourceUrlProvider));</code>
+
+##监听器
+
+实现相应的监听接口，添加@Weblistener注解，在启动类上增加@ServletComponentScan
+监听器是事件机制的，触发的时机是当事件发生的时候
+```java
+@WebListener
+public class UserHttpSessionListener implements HttpSessionListener {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserHttpSessionListener.class);
+
+    @Override
+    public void sessionCreated(HttpSessionEvent se) {
+        logger.info("session created");
+    }
+
+    @Override
+    public void sessionDestroyed(HttpSessionEvent se) {
+        logger.info("session destroy");
+    }
+}
+```
+
+##spring中bean加载的过程
