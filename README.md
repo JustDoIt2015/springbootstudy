@@ -101,3 +101,43 @@ public class UserHttpSessionListener implements HttpSessionListener {
 ```
 
 ##spring中bean加载的过程
+
+获取完整定义 -> 实例化 -> 依赖注入 -> 初始化 -> 类型转换。
+
+
+
+##springboot集成swagger
+
+1. 增加swagger配置
+2. 在controller中加入相应注解
+3. 访问localhost：port/swagger-ui.html (这里要注意静态资源访问的添加)
+<code>registry.addResourceHandler("swagger-ui.html")
+                      .addResourceLocations("classpath:/META-INF/resources/");</code>
+```java
+@Configuration
+@EnableSwagger2
+// 这里是开启的条件 可以根据是否是生产环境进行配置
+@ConditionalOnProperty(name = "swagger.enable", havingValue = "true")
+public class SwaggerConfig {
+
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("s.l.q.m.kkk.controller"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("xiaoming")
+                .version("xiaoming")
+                .description("xiaoming")
+                .contact(new Contact("xiaoming", "xiaoming", "xiaoming"))
+                .build();
+    }
+}
+```
+

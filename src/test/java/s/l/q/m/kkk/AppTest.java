@@ -35,4 +35,21 @@ public class AppTest
     {
         assertTrue( true );
     }
+
+    public void testRescu() {
+
+    }
+
+
+    class A {
+        public A(B b) {
+
+        }
+    }
+
+    class B {
+        public B(A a) {
+
+        }
+    }
 }
